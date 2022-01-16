@@ -6,14 +6,11 @@ import requests
 endpoint = sys.argv[1]
 
 # Get data from the endpoint, and convert to a dict
+# WARNING: we do not validate incoming data format is JSON
 servers_status = requests.get(endpoint).json()
 
-# print(type(servers_status))
-
-# print(servers_status)
-
 # Count the servers in each category
-# WARNING: we do not validate incoming data
+# WARNING: we do not validate incoming data has numeric values
 status_summary = {"under": 0, "over": 0}
 for server_name in servers_status:
     print(f'{server_name} {servers_status[server_name]}')
